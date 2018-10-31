@@ -1,0 +1,1 @@
+This project is designed to create a website were people can go to read and take notes on the Bible. It should be easy to use and navigate as well as have the ability to link certain parts of the Bible in the notes or vice-versa.
