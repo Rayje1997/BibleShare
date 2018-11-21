@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block title %}
+<title>BibleShare Home</title>
+{% endblock title %}
+
 {% block content %}
-  <p>home page</p>
+  <p>{{bible[0]["chapters"][0][0]}}</p>
 {% endblock content %}
