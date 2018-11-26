@@ -15,6 +15,10 @@
     <input type = "submit" value = "Submit" />
   </form>
 
+  {% if error %}
+    <p>{{ error }}</p>
+  {% endif %}
+
   <br>
   <p> Click to add user </p>
   <button>Add User</button>

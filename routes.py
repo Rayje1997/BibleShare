@@ -34,16 +34,19 @@ def home():
 @app.route('/checkLogin', methods = ['GET', 'POST'])
 def checkLogin():
 
+    # Variable to hold the error
     error = None
 
+    #TODO check to see if the password is correct
     if request.method == 'POST':
         for user in range(len(users)):
             if request.form['username'] == users[user]['username']:
                 session['username'] = request.form['username']
                 return redirect(url_for('home'))
             else:
-                error = "Invalid login credentials. Please login."
-                return redirect(url_for('index'))
+                error = "Invalid login credentials. Please try again."
+                #return redirect(url_for('index'))
+                return render_template("index.html", error = error)
     return render_template('checkLogin.html')
 
 
