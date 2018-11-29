@@ -1,0 +1,4 @@
+Add ability to select the proper verses of the Bible to be displayed
+Work on the aesthetics of the website
+Add ability to take notes
+Add abiltiy to sign-up

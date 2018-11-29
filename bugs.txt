@@ -1,0 +1,3 @@
+EMPTY LOGIN DOES NOT REDIRECT
+    When the login button is clicked with nothing in the form
+    the checkLogin page does not redirect back to index.html

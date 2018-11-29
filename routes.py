@@ -50,6 +50,14 @@ def checkLogin():
                     return render_template("index.html", error = error)
     return render_template('checkLogin.html')
 
+@app.route('/signUp', methods = ['GET', 'POST'])
+def signUp():
+    return render_template('signUp.html')
+
+@app.route('/checkSignup', methods = ['GET', 'POST'])
+def checkSignup():
+    return render_template('checkSignup.html')
+
 
 if __name__ == '__main__':
     app.run(debug = True)
