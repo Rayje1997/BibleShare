@@ -41,12 +41,13 @@ def checkLogin():
     if request.method == 'POST':
         for user in range(len(users)):
             if request.form['username'] == users[user]['username']:
-                session['username'] = request.form['username']
-                return redirect(url_for('home'))
-            else:
-                error = "Invalid login credentials. Please try again."
-                #return redirect(url_for('index'))
-                return render_template("index.html", error = error)
+                if request.form['password'] == users[user]['password']:
+                    session['username'] = request.form['username']
+                    return redirect(url_for('home'))
+                else:
+                    error = "Invalid login credentials. Please try again."
+                    #return redirect(url_for('index'))
+                    return render_template("index.html", error = error)
     return render_template('checkLogin.html')
 
 
