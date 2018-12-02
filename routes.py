@@ -23,13 +23,9 @@ app.secret_key = str(random.randrange(1000000))
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     """Controller function for the login page"""
+    session.pop('user', None)
 
     return render_template('index.html')
-
-@app.route('/home')
-def home():
-    """Controller function for the home page"""
-    return render_template('home.html', bible = bible)
 
 @app.route('/checkLogin', methods = ['GET', 'POST'])
 def checkLogin():
@@ -37,17 +33,18 @@ def checkLogin():
     # Variable to hold the error
     error = None
 
-    #TODO check to see if the password is correct
     if request.method == 'POST':
         for user in range(len(users)):
             if request.form['username'] == users[user]['username']:
                 if request.form['password'] == users[user]['password']:
-                    session['username'] = request.form['username']
+                    session['user'] = request.form['username']
                     return redirect(url_for('home'))
                 else:
                     error = "Invalid login credentials. Please try again."
-                    #return redirect(url_for('index'))
                     return render_template("index.html", error = error)
+            else:
+                error = "Invalid login credentials. Please try again."
+                return render_template("index.html", error = error)
     return render_template('checkLogin.html')
 
 @app.route('/signUp', methods = ['GET', 'POST'])
@@ -56,7 +53,24 @@ def signUp():
 
 @app.route('/checkSignup', methods = ['GET', 'POST'])
 def checkSignup():
+    error = None
+    if request.form['username'] != None:
+        for user in range(len(users)):
+            if request.form['username'] == users[user]['username']:
+                error = "This user already exists. Please pick another username."
+                return render_template('signUp.html', error =  error)
+            # TODO: edit the JSON file to have the new information
     return render_template('checkSignup.html')
+
+@app.route('/home')
+def home():
+    """Controller function for the home page"""
+    #checks to see if the user exists before it renders the page
+    if "user" in session:
+        return render_template('home.html', bible = bible)
+    else:
+        error = "Please log in"
+        return render_template("index.html", error = error)
 
 
 if __name__ == '__main__':

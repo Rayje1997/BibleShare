@@ -10,12 +10,16 @@
 
 <form action="{{url_for('checkSignup')}}" method='post'>
     <p>Username:</p>
-    <input name="Username" type="text" />
+    <input name="username" type="text" />
     <p>Password</p>
-    <input name="Password" type="text" />
+    <input name="password" type="password" />
     <p>Confirm Password</p>
-    <input name="Confirm Password" type="text" />
+    <input name="Confirm Password" type="password" />
     <input type="submit" value="Sign Up" />
 </form>
+
+{% if error %}
+  <p>{{ error }}</p>
+{% endif %}
 
 {% endblock content %}
