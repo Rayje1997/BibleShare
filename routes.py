@@ -12,6 +12,9 @@ with open('static/js/KJV.json') as b:
 # loads users.json into a dictionary
 with open('static/js/users.json') as u:
     users = json.load(u)
+
+
+
 app = Flask(__name__)
 app.static_folder = 'static'
 app.secret_key = str(random.randrange(1000000))

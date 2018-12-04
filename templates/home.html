@@ -5,5 +5,56 @@
 {% endblock title %}
 
 {% block content %}
-  <p>{{bible[0]["chapters"][0][0]}}</p>
+
+<form action="{{url_for('home')}}" method="post">
+  <!-- Select box to select book -->
+  <select>
+    {% for i in bible %}
+    <option>
+      {{i['name']}}
+    </option>
+    {% endfor %}
+  </select>
+
+  <!-- Starting select box for the chapters -->
+  <select>
+    {% for i in range(150) %}
+    <option>
+      {{i + 1}}
+    </option>
+    {% endfor %}
+  </select>
+
+  <!-- Ending select box for the chapters -->
+  <select>
+    {% for i in range(150) %}
+    <option>
+      {{i + 1}}
+    </option>
+    {% endfor %}
+  </select>
+
+  <!-- Starting select box for the verses-->
+  <select>
+    {% for i in range(176) %}
+    <option>
+      {{i + 1}}
+    </option>
+    {% endfor %}
+  </select>
+
+  <!-- Ending select box for the verses -->
+  <select>
+    {% for i in range(176) %}
+    <option>
+      {{i + 1}}
+    </option>
+    {% endfor %}
+  </select>
+
+  <input type="submit" value="Select">
+</form>
+
+<div>{{desiredContent}}</div>
+
 {% endblock content %}
