@@ -1,4 +1,6 @@
 from flask import Flask, render_template, url_for, session, request, redirect
+#from flask_wtf import Form
+#from wtforms import SelectField
 import json
 import random
 
@@ -65,12 +67,53 @@ def checkSignup():
             # TODO: edit the JSON file to have the new information
     return render_template('checkSignup.html')
 
-@app.route('/home')
+def bibleSelection(B, CH, VS, VE):
+    """This function uses the user inputs to select the portion
+    of the Bible to display.
+    param: B (book), CHS (Chapters Start), CHE (Chapters End), VS (Verses Start), VE (Verses End)
+    return: result (an array containing the appropriate verses)
+    """
+
+    result = []
+
+    B = int(B)
+    CH = int(CH)
+    if VS != 'all':
+        VS = int(VS)
+    if VE != 'all':
+        VE = int(VE)
+
+    if VS == 'all':
+        #for chap in range(len(bible[B]['chapters'])):
+        for ver in range(len(bible[B]['chapters'][CH])):
+            result.append(bible[B]['chapters'][CH][ver])
+
+    #TODO MAKE THIS WORK!! (selecting a range of verses to display)
+    else:
+        rng = VE - VS
+        for ver in range(len(bible[B]['chapters'][VS + rng])):
+            result.append(bible[B]['chapters'][CH][ver])
+
+    return result
+
+
+
+@app.route('/home', methods = ['GET', 'POST'])
 def home():
     """Controller function for the home page"""
     #checks to see if the user exists before it renders the page
     if "user" in session:
-        return render_template('home.html', bible = bible)
+        if request.method == 'POST':
+            B = request.form['bookSelect']
+            CH = request.form['chapter']
+            VS = request.form['versesStart']
+            VE = request.form['versesEnd']
+
+            desiredContent = bibleSelection(B, CH, VS, VE)
+
+            return render_template('home.html', bible = bible, desiredContent = desiredContent)
+        else:
+            return render_template('home.html', bible = bible)
     else:
         error = "Please log in"
         return render_template("index.html", error = error)
