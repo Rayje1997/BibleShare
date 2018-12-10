@@ -74,6 +74,17 @@ def signUp():
 
     return render_template('signUp.html')
 
+	
+
+
+
+
+
+
+
+
+	
+	
 @app.route('/checkSignup', methods = ['GET', 'POST'])
 def checkSignup():
 	#Checks the information given against users.json and
@@ -90,8 +101,21 @@ def checkSignup():
                 error = "This user already exists. Please pick another username."
                 return render_template('signUp.html', error =  error)
             # TODO: edit the JSON file to have the new information
+    else:
+        error = "Please enter a username"
+        return render_template('signUp.html', error = error)
     return render_template('checkSignup.html')
 
+
+
+
+
+
+
+
+	
+	
+	
 def bibleSelection(B, CH, VS, VE):
     #This function uses the user inputs taken from forms to select the portion
     #of the Bible to display.
@@ -121,7 +145,6 @@ def bibleSelection(B, CH, VS, VE):
             result.append(bible[B]['chapters'][CH][ver])
 
     return result
-
 
 
 @app.route('/home', methods = ['GET', 'POST'])
