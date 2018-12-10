@@ -3,6 +3,4 @@ Work on the aesthetics of the website
 Add ability to take notes
 Add abiltiy to sign-up
 	-- The Check part of this is done. Just have to make it so that
-	   the info is added to users.json
-
-Use a textarea tag as a placeholder for the notes section.
+	   the info is added to users.json.

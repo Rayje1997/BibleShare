@@ -1,1 +1,1 @@
-None currently
+The drop downs for the verse selects are not working.

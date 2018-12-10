@@ -1,1 +1,4 @@
-This project is designed to create a website were people can go to read and take notes on the Bible. It should be easy to use and navigate as well as have the ability to link certain parts of the Bible in the notes or vice-versa.
+Software name: BibleShare
+
+Purpose:
+This website is designed to be a place where people can go to study the Bible easily. In the future it will have note-taking and social features.
