@@ -95,7 +95,7 @@ def checkSignup():
 	#return: either home.html or redirects back to signUp with an error.
 
     error = None
-    if request.form['username'] != None:
+    if request.form['username'] != None and request.form['password'] != None:
         for user in range(len(users)):
             if request.form['username'] == users[user]['username']:
                 error = "This user already exists. Please pick another username."
